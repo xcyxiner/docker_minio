@@ -1,0 +1,67 @@
+version: '2'
+networks:
+ default:
+  external:
+   name: aaa
+services:
+ minio05:
+  image: minio/minio
+  container_name: "minio05"
+  volumes:
+   - /opt/docker_minio/minio_overlay/data/data1:/data
+  networks:
+   default:
+    aliases:
+     - minio05
+  ports:
+   - "9001:9000"
+  environment:
+   MINIO_ACCESS_KEY: 6ZTL0I2R4QASRG1FEOH0
+   MINIO_SECRET_KEY: FcXkj2tjWhWWB0wvbQvstZONsKResinLlISiU8Mm
+  command: server /data
+  command: server http://minio01/data http://minio02/data http://minio03/data http://minio04/data http://minio05/data http://minio06/data http://minio07/data http://minio08/data 
+ minio06:
+  image: minio/minio
+  container_name: "minio06"
+  volumes:
+   - /opt/docker_minio/minio_overlay/data/data2:/data
+  networks:
+   default:
+    aliases:
+     - minio06
+  ports:
+   - "9002:9000"
+  environment:
+   MINIO_ACCESS_KEY: 6ZTL0I2R4QASRG1FEOH0
+   MINIO_SECRET_KEY: FcXkj2tjWhWWB0wvbQvstZONsKResinLlISiU8Mm
+  command: server http://minio01/data http://minio02/data http://minio03/data http://minio04/data http://minio05/data http://minio06/data http://minio07/data http://minio08/data 
+ minio07:
+  image: minio/minio
+  container_name: "minio07"
+  volumes:
+   - /opt/docker_minio/minio_overlay/data/data3:/data
+  networks:
+   default:
+    aliases:
+     - minio07
+  ports:
+   - "9003:9000"
+  environment:
+   MINIO_ACCESS_KEY: 6ZTL0I2R4QASRG1FEOH0
+   MINIO_SECRET_KEY: FcXkj2tjWhWWB0wvbQvstZONsKResinLlISiU8Mm
+  command: server http://minio01/data http://minio02/data http://minio03/data http://minio04/data http://minio05/data http://minio06/data http://minio07/data http://minio08/data 
+ minio08:
+  image: minio/minio
+  container_name: "minio08"
+  volumes:
+   - /opt/docker_minio/minio_overlay/data/data4:/data
+  networks:
+   default:
+    aliases:
+     - minio08
+  ports:
+   - "9004:9000"
+  environment:
+   MINIO_ACCESS_KEY: 6ZTL0I2R4QASRG1FEOH0
+   MINIO_SECRET_KEY: FcXkj2tjWhWWB0wvbQvstZONsKResinLlISiU8Mm
+  command: server http://minio01/data http://minio02/data http://minio03/data http://minio04/data http://minio05/data http://minio06/data http://minio07/data http://minio08/data 
